@@ -1,22 +1,20 @@
-import { createContext, useState } from "react";
 import Content from "./Content";
 import "./App.css";
-
-export const ThemeContext = createContext();
+import { useContext } from "react";
+import { ThemeContext } from "./ThemeContext";
 function App() {
-  const [theme, setTheme] = useState("dark");
-
+  const context = useContext(ThemeContext);
   return (
-    <ThemeContext.Provider value={theme}>
+    <>
       <button
         onClick={() => {
-          theme === "dark" ? setTheme("light") : setTheme("dark");
+          context.toggleTheme();
         }}
       >
         Toggle theme
       </button>
       <Content />
-    </ThemeContext.Provider>
+    </>
   );
 }
 
